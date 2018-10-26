@@ -1,22 +1,12 @@
-package t1;
-
-/**
- *
- * @author 
- * Luciano Garcia 
- * Fernando Pino 
- *
- */
-
 import java.io.*;
 import java.util.*;
 
 public class T1 {
 
-    public static void main(String[] args) {
-       Scanner reader = new Scanner (System.in);
-       String regular = reader.next();
-       String chain = reader.next();
+    public static void main(String[] args) throws FileNotFoundException {
+       File file = new File("test.in");
+       Scanner reader = new Scanner (file);       
+       Converter temp = new Converter();
         
         
     }
