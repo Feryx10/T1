@@ -11,9 +11,9 @@ import java.util.*;
 
 public class T1 {
 
-    public static void main(String[] args) throws FileNotFoundException {
-       File file = new File("test.in");
-       Scanner reader = new Scanner (file);       
+    public static void main(File[] args) throws FileNotFoundException{
+        
+       Scanner reader = new Scanner (args[0]);       
        Converter temp = new Converter();
        String regular = reader.next();
        String chain = reader.next();
