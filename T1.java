@@ -15,7 +15,7 @@ public class T1 {
 
     public static void main(String[] args) {
        Scanner reader = new Scanner (System.in);
-       String regla = 
+       String regular = reader.next();
         
         
         
