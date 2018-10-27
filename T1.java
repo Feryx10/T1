@@ -13,15 +13,20 @@ public class T1 {
 
     public static void main(String[] args) throws FileNotFoundException { 
                
-       // File file = new File(args[0]);
-       Scanner reader = new Scanner (args[0]);       
-       Converter temp = new Converter();
+       File file = new File(args[0]);
+       Scanner reader  = new Scanner (file);
        
-       String regular = reader.next();
-       String chain   = reader.next();    
+       String  regular = reader.nextLine();
+       String  chain   = reader.nextLine();
        
-       System.out.print(regular+ "  " + chain); 
+       String[] aux1  = regular.split("");
+       String[] aux2  = chain.split("");
        
+       int i = 0,j = 0;
+       while (aux1.length!=i)
+       System.out.print(" " + aux1[i++] + " ");
+       while (aux2.length!=j)
+       System.out.print(" " + aux2[j++] + " ");
         
     }
     
