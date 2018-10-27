@@ -21,15 +21,23 @@ public class Converter implements APIConvert , APISearch{
         if (x==null){
             while(i!=regular.length){
                 switch(regular[i]){
-                    case "[a-zA-Z0-9]":
+                    case"[a-zA-Z0-9]":
                         sigma.add(regular[i]);
                     case ".":
-                        expression = regular[i--]+regular[i++];                    
+                        expression = regular[i--]+regular[i++];    
+                    case "*":
+                        
+                    case "~":
+                    
+                    case "|":
+                        
+                    case "_":     
+                        
                 }
             }
                 
         }        
-    }        
+    }      
     
     
     @Override
