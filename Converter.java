@@ -6,7 +6,7 @@
  * Fernando Pino 
  */
 
-public class Converter {
+public abstract class Converter implements Convert {
     
     public Converter(){
     }
