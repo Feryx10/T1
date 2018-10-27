@@ -15,8 +15,7 @@ public class Edge {
     public Edge(String father,String value,String son){
         this.father = father;
         this.value = value;
-        this.son = son;
-        
+        this.son = son;        
     }
     
 }
