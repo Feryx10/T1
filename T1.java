@@ -15,18 +15,18 @@ public class T1 {
                
        File file = new File(args[0]);
        Scanner reader  = new Scanner (file);
-       
+
        String  regular = reader.nextLine();
        String  chain   = reader.nextLine();
-       
+
        String[] aux1  = regular.split("");
        String[] aux2  = chain.split("");
-       
+
        int i = 0,j = 0;
        while (aux1.length!=i)
-       System.out.print(" " + aux1[i++] + " ");
+            System.out.print(" " + aux1[i++] + " ");
        while (aux2.length!=j)
-       System.out.print(" " + aux2[j++] + " ");
+            System.out.print(" " + aux2[j++] + " ");
         
     }
     
