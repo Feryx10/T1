@@ -18,4 +18,15 @@ public class Edge {
         this.son = son;        
     }
     
+    public String getFather() {
+        return father;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getSon() {
+        return son;
+    }
 }
