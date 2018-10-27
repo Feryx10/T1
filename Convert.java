@@ -8,9 +8,9 @@
 
 public interface Convert {
     
-    public void toAFND(String[] array);
+    public void toAFND(String[] regular,String[] chain);
     
-    public void toAFD (String[] array);
+    public void toAFD (String[] regular,String[] chain);
     
     
 }
