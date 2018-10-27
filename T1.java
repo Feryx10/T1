@@ -15,7 +15,8 @@ public class T1 {
                
        File file = new File(args[0]);
        Scanner reader  = new Scanner (file);
-
+       Converter temp = new Converter();
+        
        String  regular = reader.nextLine();
        String  chain   = reader.nextLine();
 
