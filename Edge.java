@@ -1,3 +1,5 @@
+package tarea1;
+
 /**
  * Maquinas Abstractas. 2018-2
  * Tarea 1 
@@ -8,18 +10,18 @@
 
 public class Edge {   
 
-    private final String father;
+    private final int father;
     private final String value;
-    private final String son;
+    private final int son;
     
-    public Edge(String father,String value,String son){
+    public Edge(int father,String value,int son){
         this.father = father;
         this.value  = value;
         this.son    = son;
         
     }
 
-    public String getFather() {
+    public int getFather() {
         return father;
     }
 
@@ -27,7 +29,7 @@ public class Edge {
         return value;
     }
 
-    public String getSon() {
+    public int getSon() {
         return son;
     }
     
