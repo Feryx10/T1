@@ -39,7 +39,7 @@ public class Funciones {
        // edges.add(new Edge(ultimoNodo()-1,"b",ultimoNodo()));
        // dones.add(new Edge(ultimoNodo()-3, "done", ultimoNodo()-1));
         
-        String s="(a.b.c.d.e)(a.b)";
+        String s="(a.b.c.d.e).(a.b)";
         expression=s.split("");
         for(int i=0;i<expression.length;i++)
         {
@@ -55,10 +55,10 @@ public class Funciones {
     private void contieneSimbolo(int fin) 
     {
         switch(expression[fin]){
-                    case ".":
-                        concatenacion(fin);    
                     case "*":
                         estrella(fin);
+                    case ".":
+                        concatenacion(fin);   
                     case "|":
                         union(fin);
                         
@@ -101,15 +101,35 @@ public class Funciones {
         {
             expression[tempFin]=("done"+String.valueOf(dones.size()-1));
             tempFin--;
-            if(tempFin<inicioReal || expression[tempFin].equals("."))
+            if(tempFin<inicioReal || expression[tempFin].equals(".") || expression[tempFin].equals("_") || expression[tempFin].equals("*"))
                 punto=true;
         }
        
         
     }
 
-    private void estrella(int fin) {
-    
+    private void estrella(int fin)
+    {
+        int tempFin=finReal;
+        int nodo = ultimoNodo();
+        edges.add(new Edge(nodo, "_", nodo+1));
+        if (expression[fin-1].length()>1)
+        {
+            edges.add(new Edge(nodo, "_", dones.get(getDone(expression[fin-1])).getFather()));
+            edges.add(new Edge(dones.get(getDone(expression[fin-1])).getSon(), "_", nodo+1 ));
+            edges.add(new Edge(dones.get(getDone(expression[fin-1])).getSon(), "_", dones.get(getDone(expression[fin-1])).getFather()));
+            dones.add(new Edge(nodo+1,"_",nodo));
+        }
+        expression[fin]=("done"+String.valueOf(dones.size()-1));
+        boolean punto = false;
+        while(!punto)
+        {
+            expression[tempFin]=("done"+String.valueOf(dones.size()-1));
+            tempFin--;
+            if(tempFin<inicioReal || expression[tempFin].equals(".") || expression[tempFin].equals("_") || expression[tempFin].equals("*"))
+                punto=true;
+        }
+        
     }
 
     private void union(int fin) {
