@@ -1,9 +1,12 @@
+/**
+ * Maquinas Abstractas. 2018-2
+ * Tarea 1 
+ * @author 
+ * Luciano Garcia 
+ * Fernando Pino 
+ */
 import java.util.ArrayList;
 
-/**
- *
- * @author lucia
- */
 public class Funciones {
     ArrayList<Edge> edges = new ArrayList<Edge>();
     ArrayList<Edge> dones = new ArrayList<Edge>();
