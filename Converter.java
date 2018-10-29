@@ -7,6 +7,7 @@
  */
 
 import java.util.*;
+import java.util.regex.*;
 
 public class Converter implements APIConvert , APISearch{
     
@@ -65,6 +66,21 @@ public class Converter implements APIConvert , APISearch{
                temp[count]=i;
                count++;
             }  
+        return temp;        
+    } 
+    
+    @Override
+    public ArrayList<String> toSigma(String[] array){  
+        ArrayList<String> temp = new ArrayList<>();        
+        String aux = Arrays.toString(array);
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9]", Pattern.MULTILINE);
+        Matcher matcher = pattern.matcher(aux);
+        while (matcher.find()) {
+            if(!temp.contains(matcher.group())) 
+                temp.add(matcher.group());   
+        }
         return temp;
     } 
+    
+    
 }
