@@ -40,8 +40,12 @@ public class T1 {
        while (aux2.length!=j)
             System.out.print(" " + aux2[j++] + " ");
        System.out.println("");
+       
+       System.out.println("");
+       System.out.print("Sigma =" + temp.toSigma(aux1).toString() + " ");
        System.out.println("");
        
+       System.out.println("");
        temp.toAFND(aux1,aux2);  
        System.out.println("");
        temp.toAFD(aux1,aux2); 
