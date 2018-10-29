@@ -52,7 +52,7 @@ public class Converter implements APIConvert , APISearch{
     public int[] positions(String[] array, String key){   
         int [] temp;
         int count = 0;
-        for(int i = array.length-1;i != 0;i--)    
+        for(int i = array.length-1;i != -1;i--)    
             if (array[i].equals(key)){                
                count++;
             }        
