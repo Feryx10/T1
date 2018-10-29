@@ -14,19 +14,19 @@ public class Converter implements APIConvert , APISearch{
     
     @Override
     public void toAFND(String[] regular,String[] chain){   
-        int i = 0;        
-        String expression = null;
+        int i = 0;                
         ArrayList<String> sigma = new ArrayList<>();                               
-        while(i!=regular.length){
-            int open  = positions(regular,'(')[0];
-            int close = positions(regular,')')[positions(regular,')').length-1];
-            if(open!=null){
+        while(i!=positions(regular,"(").length){
+            int open  = positions(regular,"(")[i];
+            int close = positions(regular,")")[positions(regular,")").length-1-i];
+            System.out.println(" " + open + " "+ close);
+            /*if(open!=-1){
             
                 switch(regular[i]){
-                    case"[a-zA-Z0-9]":
+                    case "a":
                         sigma.add(regular[i]);
                     case ".":
-                        expression = regular[i--]+regular[i++];    
+                          
                     case "*":
                         
                     case "~":
@@ -36,7 +36,8 @@ public class Converter implements APIConvert , APISearch{
                     case "_":     
                         
                 }
-            }
+            }*/
+        i++;
         }
                 
                
@@ -48,14 +49,20 @@ public class Converter implements APIConvert , APISearch{
     }
     
     @Override
-    public int[] positions(String[] array, char key){   
-        int[] temp = null;
-        int j = 0;
+    public int[] positions(String[] array, String key){   
+        int [] temp;
+        int count = 0;
         for(int i = array.length-1;i != 0;i--)    
-            if (array[i].equals(key)){
-               temp[j]=i; 
-               j++;
-            }
+            if (array[i].equals(key)){                
+               count++;
+            }        
+        temp = new int[count]; 
+        count=0;
+        for(int i = array.length-1;i != 0;i--)    
+            if (array[i].equals(key)){                
+               temp[count]=i;
+               count++;
+            }  
         return temp;
     } 
 }
