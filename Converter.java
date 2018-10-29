@@ -5,6 +5,7 @@
  * Luciano Garcia 
  * Fernando Pino 
  */
+
 import java.util.*;
 
 public class Converter implements APIConvert , APISearch{
@@ -15,11 +16,15 @@ public class Converter implements APIConvert , APISearch{
     @Override
     public void toAFND(String[] regular,String[] chain){   
         int i = 0;                
-        ArrayList<String> sigma = new ArrayList<>();                               
+        ArrayList<String> sigma = new ArrayList<>();     
+        ArrayList<Integer> group = new ArrayList<>(); 
         while(i!=positions(regular,"(").length){
             int open  = positions(regular,"(")[i];
             int close = positions(regular,")")[positions(regular,")").length-1-i];
+            group.add(open);
+            group.add(close);
             System.out.println(" " + open + " "+ close);
+            System.out.println(" " + group.toString() + " ");
             /*if(open!=-1){
             
                 switch(regular[i]){
