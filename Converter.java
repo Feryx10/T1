@@ -10,43 +10,35 @@ import java.util.*;
 
 public class Converter implements APIConvert , APISearch{
     
-    public Converter(){
-    }
     
     @Override
-    public void toAFND(String[] regular,String[] chain){   
+    public void toAFND(String[] regular,String[] chain){
+        
+        Funciones funciones = new Funciones(regular);
         int i = 0;                
         ArrayList<String> sigma = new ArrayList<>();     
         ArrayList<Integer> group = new ArrayList<>(); 
-        while(i!=positions(regular,"(").length){
+        System.out.println("asdads");
+        while(i!=positions(regular,"(").length)
+        {
             int open  = positions(regular,"(")[i];
             int close = positions(regular,")")[positions(regular,")").length-1-i];
             group.add(open);
             group.add(close);
-            System.out.println(" " + open + " "+ close);
-            System.out.println(" " + group.toString() + " ");
-            /*if(open!=-1){
-            
-                switch(regular[i]){
-                    case "a":
-                        sigma.add(regular[i]);
-                    case ".":
-                          
-                    case "*":
-                        
-                    case "~":
-                    
-                    case "|":
-                        
-                    case "_":     
-                        
-                }
-            }*/
-        i++;
+            i++;
+            System.out.println("agg");
         }
-                
+        
+        System.out.println(group.size());
+        
+        for(int k=0; k < group.size() ;k=k+2)
+        {
+            System.out.println(k);
+            funciones.desarmador(group.get(k), group.get(k+1));
+        }
+             
                
-    }        
+    }
     
     
     @Override
