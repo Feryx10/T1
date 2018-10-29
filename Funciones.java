@@ -33,28 +33,13 @@ public class Funciones {
            // System.out.println(expression[fin]);
             fin--;
         }
+       // imprimir();
+         
         imprimir();
+        
     }
     
-    public void parse()
-    {
-        
-        edges.add(new Edge(ultimoNodo(),"a",ultimoNodo()+1));
-       // edges.add(new Edge(ultimoNodo()-1,"b",ultimoNodo()));
-       // dones.add(new Edge(ultimoNodo()-3, "done", ultimoNodo()-1));
-        
-        for(int i=0;i<expression.length;i++)
-        {
-            System.out.print(expression[i]);
-        }
-        System.out.println("");
-        System.out.println("--------");
-       // expression[1]="done0";
-        desarmador(0, 5);
-        imprimir();
-        
-        
-    }
+   
     
     private void contieneSimbolo(int fin) 
     {
@@ -122,7 +107,7 @@ public class Funciones {
     private void estrella(int fin)
     {
         System.out.println("estrella");
-        int tempFin=finReal;
+        int tempFin=fin;
         int nodo = ultimoNodo();
         edges.add(new Edge(nodo, "_", nodo+1));
         if (expression[fin-1].length()>1)
@@ -153,8 +138,68 @@ public class Funciones {
         
     }
 
-    private void union(int fin) {
+    private void union(int fin)
+    {
+        int tempFin=finReal;
+        if(!(expression[fin].length()>1))
+        {
+            if (expression[fin-1].equals("*"))
+                estrella(fin-1);
+            if (expression[fin-1].length()>1 && expression[fin+1].length()>1)
+            {  
+                int nodo = ultimoNodo();
+                int doneUno = getDone(expression[fin-1]);
+                int doneDos = getDone(expression[fin+1]);
+                edges.add(new Edge(nodo,"_",  dones.get(doneUno).getSon()));
+                edges.add(new Edge(nodo,"_",  dones.get(doneDos).getSon()));
+                edges.add(new Edge(dones.get(doneUno).getFather() ,"_", nodo+1));
+                edges.add(new Edge(dones.get(doneDos).getFather() ,"_", nodo+1));
+                dones.add(new Edge(doneUno, "done", doneDos));
+            }
+            else if(expression[fin+1].length()>1)
+            {
+                int nodo = ultimoNodo();
+                int done = getDone(expression[fin+1]);
+                edges.add(new Edge(nodo,"_",  dones.get(done).getSon()));
+                edges.add(new Edge(dones.get(done).getFather() ,"_", nodo+1));
+                edges.add(new Edge(nodo,"_",nodo+2));
+                edges.add(new Edge(nodo+2,expression[fin-1],nodo+3));
+                edges.add(new Edge(nodo+3, "_", nodo+1));
+                dones.add(new Edge(nodo, "_", nodo+1));
+            }
+            else if (expression[fin-1].length()>1)
+            {
+                int nodo = ultimoNodo();
+                int done = getDone(expression[fin-1]);
+                edges.add(new Edge(nodo,"_",  dones.get(done).getSon()));
+                edges.add(new Edge(dones.get(done).getFather() ,"_", nodo+1));
+                edges.add(new Edge(nodo,"_",nodo+2));
+                edges.add(new Edge(nodo+2,expression[fin+1],nodo+3));
+                edges.add(new Edge(nodo+3, "_", nodo+1));
+                dones.add(new Edge(nodo, "_", nodo+1));
+            }
 
+            else
+            {
+                int nodo = ultimoNodo();
+                edges.add(new Edge(nodo,"_",nodo+1));
+                edges.add(new Edge(nodo,"_",nodo+2));
+                edges.add(new Edge(nodo+1,expression[fin+1],nodo+4));
+                edges.add(new Edge(nodo+2,expression[fin-1],nodo+3));
+                edges.add(new Edge(nodo+4,"_",nodo+5));
+                edges.add(new Edge(nodo+3,"_",nodo+5));
+                dones.add(new Edge(nodo, "done", nodo+5));
+            }
+            expression[fin]=("done"+String.valueOf(dones.size()-1));
+            boolean punto = false;
+            while(!punto)
+            {
+                expression[tempFin]=("done"+String.valueOf(dones.size()-1));
+                tempFin--;
+                if(tempFin<inicioReal || expression[tempFin].equals(".") || expression[tempFin].equals("_") || expression[tempFin].equals("*"))
+                    punto=true;
+        }
+        }
     }
     
     public int ultimoNodo()
@@ -184,7 +229,6 @@ public class Funciones {
         System.out.println("------------");
         for(int i=0; i<expression.length;i++)
         {
-            
             System.out.print(expression[i]);
         }
     }
