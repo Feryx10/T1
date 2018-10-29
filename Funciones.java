@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Maquinas Abstractas. 2018-2
  * Tarea 1 
@@ -5,17 +7,19 @@
  * Luciano Garcia 
  * Fernando Pino 
  */
-import java.util.ArrayList;
-
 public class Funciones {
     ArrayList<Edge> edges = new ArrayList<Edge>();
     ArrayList<Edge> dones = new ArrayList<Edge>();
+    ArrayList<String> sigma = new ArrayList<String>();
+
     private String[] expression;
     int finReal;
     int inicioReal;
-
-    public Funciones(String[] expression) {
+    int totalNodos;
+    
+    public Funciones(String[] expression, ArrayList sigma) {
         this.expression = expression;
+        this.sigma = sigma;
     }
     
     
@@ -35,11 +39,28 @@ public class Funciones {
         }
        // imprimir();
          
-        imprimir();
-        
+       // imprimir();
+       
     }
     
+   public int totalNodos()
+   {
+       int total=-1;
+       for(int i=0; i<edges.size();i++)
+       {
+           if(edges.get(i).getFather()>total)
+           {
+               total=edges.get(i).getFather();
+           }
+       }
+       return total+1;
+   }
    
+   //public void completarNodoInicio()
+   //{
+   //    for
+   //    edges.add(new Edge(dones.get(0).getSon(),)
+   //}
     
     private void contieneSimbolo(int fin) 
     {
@@ -106,7 +127,7 @@ public class Funciones {
 
     private void estrella(int fin)
     {
-        System.out.println("estrella");
+       
         int tempFin=fin;
         int nodo = ultimoNodo();
         edges.add(new Edge(nodo, "_", nodo+1));
@@ -230,6 +251,28 @@ public class Funciones {
         for(int i=0; i<expression.length;i++)
         {
             System.out.print(expression[i]);
+        }
+    }
+    public ArrayList getEdges()
+    {
+        return edges;
+    }
+    public Edge getFinishEnd()
+    {
+        return dones.get(getDone(expression[0]));
+    }
+    
+    public void getOcurrencias(int size)
+    {
+        
+    }
+    
+    public void completeStart()
+    {
+        int nodo = getFinishEnd().getFather();
+        for(int i=0; i<sigma.size(); i++)
+        {
+            edges.add(new Edge(nodo,sigma.get(i),nodo));
         }
     }
 }
