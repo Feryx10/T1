@@ -20,6 +20,8 @@ public class T1 {
         String  regular = reader.nextLine();
         String  chain   = reader.nextLine();
 
+        regular=("("+regular+")");
+        
         String[] aux1   = regular.split("");
         String[] aux2   = chain.split("");
         int i = 0,j = 0;
