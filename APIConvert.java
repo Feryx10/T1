@@ -6,6 +6,7 @@
  * Fernando Pino 
  */
 
+import java.util.ArrayList;
 public interface APIConvert {
     /**
      * Método que recibe dos arreglos de elementos para
@@ -18,6 +19,8 @@ public interface APIConvert {
     public void toAFND(String[] regular,String[] chain);
     
     public void toAFD (String[] regular,String[] chain);
+    
+    public ArrayList<String> toSigma(String[] array);
     
     
 }
