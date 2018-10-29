@@ -17,8 +17,7 @@ public class Converter implements APIConvert , APISearch{
         Funciones funciones = new Funciones(regular);
         int i = 0;                
         ArrayList<String> sigma = new ArrayList<>();     
-        ArrayList<Integer> group = new ArrayList<>(); 
-        System.out.println("asdads");
+        ArrayList<Integer> group = new ArrayList<>();         
         while(i!=positions(regular,"(").length)
         {
             int open  = positions(regular,"(")[i]; 
@@ -33,15 +32,13 @@ public class Converter implements APIConvert , APISearch{
             group.add(open);  
             group.add(close);
             System.out.println(open+" "+close);
-            System.out.println(group.toString());
+            System.out.println(group.toString());            
             i++;            
-        }
-        
-        System.out.println(group.size());
+        }        
+        System.out.println("");
         
         for(int k=0; k < group.size() ;k=k+2)
-        {
-            System.out.println(k);
+        {           
             funciones.desarmador(group.get(k), group.get(k+1));
         }
              
