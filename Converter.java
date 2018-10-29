@@ -21,12 +21,20 @@ public class Converter implements APIConvert , APISearch{
         System.out.println("asdads");
         while(i!=positions(regular,"(").length)
         {
-            int open  = positions(regular,"(")[i];
-            int close = positions(regular,")")[positions(regular,")").length-1-i];
-            group.add(open);
+            int open  = positions(regular,"(")[i]; 
+            int j = positions(regular,")").length-1;
+            int close = positions(regular,")")[j];
+            while (open>close){
+                 close = positions(regular,")")[j];                 
+                 j--;
+            }         
+            while(group.contains(close))
+                     close = positions(regular,")")[j--];
+            group.add(open);  
             group.add(close);
-            i++;
-            System.out.println("agg");
+            System.out.println(open+" "+close);
+            System.out.println(group.toString());
+            i++;            
         }
         
         System.out.println(group.size());
